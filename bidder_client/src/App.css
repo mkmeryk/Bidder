@@ -64,6 +64,18 @@
   flex-direction: column;
 }
 
+.content-page-welcome{
+  margin: 0%;
+  background-image: url('../public/images/logo.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .auctions{
   text-decoration: none;
   text-align:left;

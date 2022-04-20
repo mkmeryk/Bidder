@@ -13,7 +13,7 @@ import SignUpPage from './components/SignUpPage';
 import UseStateHook from './components/UseStateHook';
 import UseEffectHook from './components/UseEffectHook';
 import NotFoundPage from './components/NotFoundPage';
-
+import WelcomePage from './components/WelcomePage';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -40,6 +40,7 @@ export default function App() {
     <BrowserRouter>
       <NavBar currentUser={user} onSignOut={onSignOut} />
       <Switch>
+        <Route exact path="/" component={WelcomePage} />
         <Route exact path='/sign_in'
           render={(routeProps) => <SignInPage {...routeProps} onSignIn={getCurrentUser} />}
         />
@@ -51,6 +52,7 @@ export default function App() {
         <Route path='/use_state' component={UseStateHook} />
         <Route path='/use_effect' component={UseEffectHook} />
         <Route component={NotFoundPage} />
+        
       </Switch>
     </BrowserRouter>
   )

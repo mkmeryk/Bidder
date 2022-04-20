@@ -13,6 +13,9 @@ const NavBar = ({ currentUser, onSignOut}) => {
         <nav className="nav-bar">
             
             <NavLink to='/auctions'><img src='images/final_exam_logo.png'width="50px" alt="Logo" /></NavLink>
+            |
+            <NavLink to='/' className="nav-links">Home</NavLink>
+            |
             <NavLink to='/auctions' className="nav-links">Auctions</NavLink>
             |
         {
