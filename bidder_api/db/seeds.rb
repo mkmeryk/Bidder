@@ -45,7 +45,8 @@ users = User.all
             Bid.create(
                 bid_price: rand(50..2000),
                 auction: i,
-                user: users.sample
+                user: users.sample,
+                created_at: created_at,
             )     
         end
     end

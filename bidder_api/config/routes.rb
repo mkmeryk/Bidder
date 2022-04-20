@@ -5,14 +5,20 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :users
-  resources :sessions, only:[:new,:destroy,:create]
+  resource :sessions, only:[:new,:destroy,:create]
   resources :auctions do
     resources :bids, only: [:create]
   end
+
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :auctions , only:[:create, :index, :show]
-      resources :sessions, only: [:create, :destroy]
+      resources :auctions , only:[:create, :index, :show] do
+        resources :bids, only: [:create]
+      end
+      resource :sessions, only: [:create, :destroy]
+      resources :users, only: [:create] do
+        get :current, on: :collection 
+      end
     end
   end
 

@@ -1,4 +1,11 @@
 class Api::V1::AuctionsController < Api::ApplicationController
+    
+    def create
+        auction = Auction.new(auction_params)
+        auction.user = User.first
+        auction.save!
+        render json: { id: auction.id }
+    end
 
     def index
         auctions = Auction.order(created_at: :desc)
@@ -7,21 +14,11 @@ class Api::V1::AuctionsController < Api::ApplicationController
 
     def show
         auction = Auction.find(params[:id])
+        bids = auction.bids.order(bid_price: :desc)
         render(json: auction)
     end
 
-    def create
-        auction = Auction.new(auction_params)
-        auction.user = User.first
-        if auction.save
-            render json:{id: auction.id}
-        else
-            render(
-                json:{errors: auctions.errors.messages},
-                status: 422
-            )
-        end
-    end
+    private
 
     def auction_params
         params.require(:auction).permit(:title,:description,:closing_date,:reserve_price)
